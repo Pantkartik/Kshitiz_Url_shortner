@@ -369,7 +369,7 @@ Add your project's actual license here. If the repository includes a `LICENSE` f
 ---
 
 <p align="center">
-  <strong>Built with ❤️ @Pantkarik,@nowordsyours,Karanjeet Hingham</strong>
+  <strong>Built with ❤️ @Pantkarik,@nowordsyours,@karanjeet,@Lordparam</strong>
   <br />
   <sub>LinkPulse — Short links. Smarter analytics.</sub>
 </p>
