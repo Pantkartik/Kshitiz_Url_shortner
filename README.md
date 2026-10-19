@@ -316,16 +316,7 @@ For deployment details, see:
 - [`docs/architecture.md`](docs/architecture.md)
 - [`docs/deployment.md`](docs/deployment.md)
 
-### Before Submitting
 
-- [ ] Replace the live demo placeholder with the actual deployed URL.
-- [ ] Add the public GitHub repository URL.
-- [ ] Verify that the deployed application is accessible.
-- [ ] Configure production environment variables securely.
-- [ ] Confirm the API, database, Redis, and worker are configured correctly.
-- [ ] Ensure screenshots accurately represent the project.
-
-**Important:** Do not submit a `localhost` URL as your live project link.
 
 ---
 
