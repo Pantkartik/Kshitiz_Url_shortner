@@ -4,15 +4,18 @@ import type {
   ClickEventPayload,
 } from "./types.js";
 
+// Identify automated traffic using common bot and crawler user-agent patterns.
 const BOT_USER_AGENT =
   /bot|crawler|spider|slurp|preview|headless|monitor|checker|fetcher|curl|wget|python-requests|httpclient/i;
 
+// Clean the user-agent string and limit its length for safe storage.
 function sanitizeUserAgent(value: string | string[] | undefined): string | null {
   if (typeof value !== "string") return null;
   const sanitized = value.replace(/[\u0000-\u001f\u007f]/g, "").trim().slice(0, 512);
   return sanitized.length > 0 ? sanitized : null;
 }
 
+// Accept only valid HTTP/HTTPS referrers and store their origin.
 function sanitizeReferrer(value: string | string[] | undefined): string | null {
   if (typeof value !== "string" || value.length > 2048) return null;
   try {
@@ -24,6 +27,7 @@ function sanitizeReferrer(value: string | string[] | undefined): string | null {
   }
 }
 
+// Classify the visitor as a bot, tablet, mobile device, desktop, or unknown.
 function classifyDevice(userAgent: string | null, isBot: boolean): ClickDeviceType {
   if (isBot) return "BOT";
   if (!userAgent) return "UNKNOWN";
@@ -32,6 +36,7 @@ function classifyDevice(userAgent: string | null, isBot: boolean): ClickDeviceTy
   return "DESKTOP";
 }
 
+// Detect the browser from its user-agent string.
 function classifyBrowser(userAgent: string | null): ClickBrowser {
   if (!userAgent) return "UNKNOWN";
   if (/edg\//i.test(userAgent)) return "EDGE";
@@ -42,6 +47,7 @@ function classifyBrowser(userAgent: string | null): ClickBrowser {
   return "OTHER";
 }
 
+// Build a normalized click event payload from the incoming request details.
 export function createClickEvent(input: {
   id: string;
   linkId: string;
@@ -53,6 +59,7 @@ export function createClickEvent(input: {
 }): ClickEventPayload {
   const userAgent = sanitizeUserAgent(input.userAgent);
   const isBot = userAgent !== null && BOT_USER_AGENT.test(userAgent);
+
   return {
     id: input.id,
     linkId: input.linkId,
